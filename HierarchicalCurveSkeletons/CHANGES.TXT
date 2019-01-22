@@ -1,0 +1,58 @@
+Potential Field Based Skeletonization Project
+---------------------------------------------
+Changes from v1.2.1
+-------------------
+Fixed some compiler related problems that came up with gcc 3.4.2.
+ - one in the TNT library, one in the StreamLn module
+
+Changes from v1.2
+-----------------
+* Flood fill algorithm used to make solid volume changed from recursive to 
+    slower but not recursive (got stack overflow for large volumes). File 
+    changed: makeSolidVol.cpp
+
+Changes from v1.1.1
+-------------------
+* add interactive mode to pfSkel module
+* changed output format to include segment number for each point in the 
+	skeleton.
+* optional output of skeleton as line segments between joints.
+* optional saving of potential field to a file
+* optional loading the potential field from a file
+* In/Out support for basic operations: computing the potential field, 
+    detecting critical points and high divergence points. (useful when 
+    inside vs. outside the object is not known (point samples on the boundary))
+
+
+Changes from v1.1
+-----------------
+* Print out version information when program is starting.
+
+* Fixed a bug in the driver program
+	(When the input volume is not padded by enough empty layers of voxels
+the program exists with no error message).
+	Inserted a message explaining why the program stops at that point.
+
+* Fixed the bug in the MakeSolidVolume module. 
+	(Bug: make solid volume fails if the object has concavities in the z 
+direction, because it does planar flood-filling on each z plane. An object 
+having concavities in the Z direction will have those concavities filled as 
+being part of the inside of the object.)
+	
+	The bug was fixed by adding another 2 planar flood filling steps in 
+the other 2 directions: X and Y.
+
+
+
+Changes from v1.0
+-----------------
+* Added high divergence points as seeds for the StreamLn module.
+	- We can now use a field strength of 7 and some of the 
+		highest divergence points.
+	- percentage of divergence points to use is a new parameter 
+		of the program.
+
+* Before adding extra layers of voxels, check that after adding them
+	there will be at least a plane of empty voxels left in each direction 
+	between the object and it's bounding box.
+

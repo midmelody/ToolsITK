@@ -1,0 +1,83 @@
+[If_Read_Disp] IF_READ                  ---if read initial disp flag (0: no initial disp; 1: read in disp)
+[Initial_Disp_Dir] INIT_DIR             ---dir name storing initial disp
+[Initial_Disp_Suffix] _1_1_1_4_4_4      ---suffix of initial disp name
+[Moving_Image_File] MOVING_IMAGE        ---template image
+[Fixed_Image_File] FIXED_IMAGE          ---target image
+[Moving_Mask_File] MOVING_MASK          ---mask of template image
+[Fixed_Mask_File] FIXED_MASK            ---mask of target image
+[Moving_Lmk_File] MOVING_LMK            ---landmark file for template image
+[Fixed_Lmk_File] FIXED_LMK              ---landmark file for target image
+[Result_Dir] OUTPUT_DIR                 ---directory to save results
+[Log_Filename] Result.txt               ---log file name
+[Coeff_Filename] coeff.dat              ---coefficient file name
+[Lmkerror_Filename] ResultLMK.txt       ---file to store final landmark error result
+[Total_Level_Number] 8                  ---number of registration levels
+[If_Write_Internal_Image] 0             ---if write masked original input HU images, and vesselness image and mask image at each level flag (0: no writing; 1: writing out)
+[If_Save_Fullsize_Disp] 0               ---if write deformed image at full resolution at each level flag (write the deformed image at 0: current resolution; 1: full resolution)
+[Weight_SSTVD] 1                        ---weight of SSTVD cost
+[Weight_SSVMD] VED                      ---weight of SSVMD cost
+[Weight_Smooth] SMOOTH                  ---weight of SMOOTH cost
+[Smooth_Alpha] 0.75                     ---weight of alpha term (cross displacements) in smooth cost
+[Smooth_Beta] 0.25                      ---weight of beta term (Laplacian) in smooth cost
+[Smooth_Gamma] 0                        ---weight of gamma term (constant) in smooth cost
+[Weight_Lmk] 0                          ---weight of LMK cost
+[Blut_Scale] 128                        ---number of sample points on each axis direction (for saving precalculated B-Spline Array)
+[Mask_Lower_Threshold] 1                ---lower threshold of mask value
+[Mask_Upper_Threshold] 255              ---lower threshold of mask value
+[Global_Setting_End] 
+
+------------------------------------------------------------------------------------------------
+Here begins the parameter for each level. Explaination of these parameters are noted in level 1.
+------------------------------------------------------------------------------------------------
+
+[Level_Number] 1                        ---level number
+[Iteration] 400                         ---maximum number of iteration
+[Image_Size_Ratio] 8 8 8                ---1/8 of image resolution in x,y,z direction 
+[Spline_Spacing] 16 16 16               ---grid space in x,y,z direction is 16 pixels at current resolution
+[Level_Setting_End] 
+
+[Level_Number] 2
+[Iteration] 400
+[Image_Size_Ratio] 8 8 8
+[Spline_Spacing] 8 8 8
+[Level_Setting_End]
+
+[Level_Number] 3
+[Iteration] 200
+[Image_Size_Ratio] 4 4 4
+[Spline_Spacing] 8 8 8
+[Level_Setting_End] 
+
+[Level_Number] 4
+[Iteration] 200
+[Image_Size_Ratio] 4 4 4
+[Spline_Spacing] 4 4 4
+[Level_Setting_End]
+
+[Level_Number] 5
+[Iteration] 50
+[Image_Size_Ratio] 2 2 2
+[Spline_Spacing] 8 8 8
+[If_Write_Disp] 1                       ---if write displacement field (full resolution) flag (0: no writing; 1: writing out)
+[Level_Setting_End]
+
+[Level_Number] 6
+[Iteration] 50
+[Image_Size_Ratio] 2 2 2
+[Spline_Spacing] 4 4 4
+[If_Write_Disp] 1
+[Level_Setting_End]
+
+[Level_Number] 7
+[Iteration] 20
+[Image_Size_Ratio] 1 1 1
+[Spline_Spacing] 8 8 8
+[If_Write_Disp] 1
+[Level_Setting_End]
+
+[Level_Number] 8
+[Iteration] 20
+[Image_Size_Ratio] 1 1 1
+[Spline_Spacing] 4 4 4
+[If_Write_Disp] 1
+[Level_Setting_End] 

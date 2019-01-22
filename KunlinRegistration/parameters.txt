@@ -1,0 +1,85 @@
+[If_Read_Disp] 0
+[Initial_Disp_Dir] ./
+[Initial_Disp_Suffix] NOINIT
+[Moving_Image_File] Temp/movingImg.hdr
+[Fixed_Image_File] Temp/fixedImg.hdr
+[If_Read_VM] 1
+[Moving_VM_File] Temp/movingVes.hdr
+[Fixed_VM_File] Temp/fixedVes.hdr
+[Moving_Mask_File] Temp/movingMsk.hdr
+[Fixed_Mask_File] Temp/fixedMsk.hdr
+[Moving_Lmk_File] Data/landMark.txt
+[Fixed_Lmk_File] Data/landMark.txt
+[Result_Dir] Result/
+[Log_Filename] Result.txt
+[Coeff_Filename] coeff.dat
+[Lmkerror_Filename] ResultLMK.txt
+[Total_Level_Number] 8
+[If_Write_Internal_Image] 0
+[If_Save_Fullsize_Disp] 0
+[Weight_SSTVD] 0.000001
+[Weight_SSVMD] 1
+[Weight_Smooth] 1
+[Smooth_Alpha] 0.75
+[Smooth_Beta] 0.25
+[Smooth_Gamma] 0
+[Weight_Lmk] 0
+[Blut_Scale] 128
+[Mask_Lower_Threshold] 1
+[Mask_Upper_Threshold] 255
+[VM_Sigma_Min_Global] 2
+[VM_Sigma_Max_Global] 3
+[VM_Iteration_Global] 6
+[Global_Setting_End] 
+
+[Level_Number] 1
+[Iteration] 100
+[Image_Size_Ratio] 8 8 8
+[Spline_Spacing] 8 8 8
+[Level_Setting_End] 
+
+[Level_Number] 2
+[Iteration] 100
+[Image_Size_Ratio] 8 8 8
+[Spline_Spacing] 4 4 4
+[Level_Setting_End]
+
+[Level_Number] 3
+[Iteration] 100
+[Image_Size_Ratio] 4 4 4
+[Spline_Spacing] 8 8 8
+[Level_Setting_End] 
+
+[Level_Number] 4
+[Iteration] 100
+[Image_Size_Ratio] 4 4 4
+[Spline_Spacing] 4 4 4
+[Level_Setting_End]
+
+[Level_Number] 5
+[Iteration] 40
+[Image_Size_Ratio] 2 2 2
+[Spline_Spacing] 8 8 8
+[If_Write_Disp] 1
+[Level_Setting_End]
+
+[Level_Number] 6
+[Iteration] 40
+[Image_Size_Ratio] 2 2 2
+[Spline_Spacing] 4 4 4
+[If_Write_Disp] 1
+[Level_Setting_End]
+
+[Level_Number] 7
+[Iteration] 20
+[Image_Size_Ratio] 1 1 1
+[Spline_Spacing] 8 8 8
+[If_Write_Disp] 1
+[Level_Setting_End]
+
+[Level_Number] 8
+[Iteration] 20
+[Image_Size_Ratio] 1 1 1
+[Spline_Spacing] 4 4 4
+[If_Write_Disp] 1
+[Level_Setting_End] 

@@ -1,0 +1,117 @@
+#include "itkImage.h"
+#include "itkImageFileReader.h"
+#include "itkImageFileWriter.h"
+#include "itkImageRegionIterator.h"
+#include "itkLabelGeometryImageFilter.h"
+ 
+#include <iostream>
+#include "math.h"
+
+int main(int argc, char * argv[] )
+{
+  if( argc < 2 )
+    {
+      std::cerr << "Usage: " << std::endl;
+      std::cerr << argv[0] << " inputImageFile " << std::endl;
+      return EXIT_FAILURE;
+    }
+
+  //ITK settings
+  const unsigned int Dimension = 3;
+  typedef int PixelType;
+  typedef itk::Image< PixelType, Dimension > ImageType;
+  typedef itk::ImageFileReader< ImageType > ReaderType;
+  
+  //Filters
+  ReaderType::Pointer reader = ReaderType::New();
+
+  //Parameters
+  reader->SetFileName( argv[1] );
+ 
+  typedef itk::LabelGeometryImageFilter< ImageType > LabelGeometryImageFilterType;
+  LabelGeometryImageFilterType::Pointer labelGeometryImageFilter = LabelGeometryImageFilterType::New();
+  labelGeometryImageFilter->SetInput( reader->GetOutput() );
+ 
+  // These generate optional outputs.
+  labelGeometryImageFilter->CalculatePixelIndicesOn();
+  labelGeometryImageFilter->CalculateOrientedBoundingBoxOn();
+  labelGeometryImageFilter->CalculateOrientedLabelRegionsOn();
+  labelGeometryImageFilter->Update();
+ 
+  LabelGeometryImageFilterType::LabelsType allLabels = labelGeometryImageFilter->GetLabels();
+  LabelGeometryImageFilterType::LabelsType::iterator allLabelsIt;
+  allLabelsIt = allLabels.begin();
+  allLabelsIt++;
+  
+  int ct = 1;
+  /*
+  std::cout << "Number of labels: " << labelGeometryImageFilter->GetNumberOfLabels()-1 << std::endl;
+  std::cout << std::endl;
+  while(allLabelsIt != allLabels.end())
+    { 
+      LabelGeometryImageFilterType::LabelPixelType labelValue = *allLabelsIt;
+      std::cout << "\tNo: " << ct << std::endl; 
+      std::cout << "\tVolume: " << labelGeometryImageFilter->GetVolume(labelValue) << std::endl;
+      std::cout << "\tBoundingBoxVolume: " << labelGeometryImageFilter->GetBoundingBoxVolume(labelValue) << std::endl;
+      std::cout << "\tOrientedBoundingBoxVolume: " << labelGeometryImageFilter->GetOrientedBoundingBoxVolume(labelValue) << std::endl;
+      std::cout << "\tBoundingBoxSize: " << labelGeometryImageFilter->GetBoundingBoxSize(labelValue) << std::endl;
+      std::cout << "\tOrientedBoundingBoxSize: " << labelGeometryImageFilter->GetOrientedBoundingBoxSize(labelValue) << std::endl;
+      std::cout << "\tCentroid: " << labelGeometryImageFilter->GetCentroid(labelValue) << std::endl;
+      std::cout << "\tAxes Length: " << labelGeometryImageFilter->GetAxesLength(labelValue) << std::endl;
+      std::cout << std::endl << std::endl;
+      allLabelsIt++;   
+      ct++;
+    }
+  */
+  while(allLabelsIt != allLabels.end())
+    { 
+      LabelGeometryImageFilterType::LabelPixelType labelValue = *allLabelsIt;
+
+
+
+
+      std::cout << "#" << ct; 
+      std::cout << " " << labelGeometryImageFilter->GetVolume(labelValue);
+      std::cout << " " << labelGeometryImageFilter->GetBoundingBoxVolume(labelValue);
+      std::cout << " " << labelGeometryImageFilter->GetOrientedBoundingBoxVolume(labelValue);
+      int box1 = labelGeometryImageFilter->GetBoundingBoxSize(labelValue)[0];
+      int box2 = labelGeometryImageFilter->GetBoundingBoxSize(labelValue)[1];
+      int box3 = labelGeometryImageFilter->GetBoundingBoxSize(labelValue)[2];
+      int boxT;
+      if(box1>box2)
+	{
+	  boxT = box1;
+	  box1 = box2;
+	  box2 = boxT;
+	}
+      if(box2>box3)
+	{
+	  boxT = box2;
+	  box2 = box3;
+	  box3 = boxT;
+	}
+      if(box1>box2)
+	{
+	  boxT = box1;
+	  box1 = box2;
+	  box2 = boxT;
+	}
+      std::cout << " " << box3;
+      std::cout << " " << box2;
+      std::cout << " " << box1;
+      std::cout << " " << labelGeometryImageFilter->GetOrientedBoundingBoxSize(labelValue)[0];
+      std::cout << " " << labelGeometryImageFilter->GetOrientedBoundingBoxSize(labelValue)[1];
+      std::cout << " " << labelGeometryImageFilter->GetOrientedBoundingBoxSize(labelValue)[2];
+      std::cout << " " << labelGeometryImageFilter->GetAxesLength(labelValue)[2];
+      std::cout << " " << labelGeometryImageFilter->GetAxesLength(labelValue)[1];
+      std::cout << " " << labelGeometryImageFilter->GetAxesLength(labelValue)[0];
+      std::cout << " " << labelGeometryImageFilter->GetCentroid(labelValue)[0];
+      std::cout << " " << labelGeometryImageFilter->GetCentroid(labelValue)[1];
+      std::cout << " " << labelGeometryImageFilter->GetCentroid(labelValue)[2];
+      std::cout << std::endl;
+      allLabelsIt++;   
+      ct++;
+    }
+ 
+  return EXIT_SUCCESS;
+}

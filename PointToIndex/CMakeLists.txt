@@ -1,0 +1,12 @@
+PROJECT(PointToIndex)
+
+cmake_minimum_required(VERSION 2.8)
+
+FIND_PACKAGE(ITK)
+IF(ITK_FOUND)
+  INCLUDE(${ITK_USE_FILE})
+ENDIF(ITK_FOUND)
+
+ADD_EXECUTABLE(PointToIndex main.cxx)
+TARGET_LINK_LIBRARIES(PointToIndex ${ITK_LIBRARIES})
+
