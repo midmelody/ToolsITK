@@ -90,13 +90,13 @@ int main( int argc, char * argv[] )
         {
           pixelIndex[0]=x;
           pixelIndex[1]=y;
-          pixelIndex[2]=z+1;
+          pixelIndex[2]=z;
         }
       else if(mode==1)
         {
           pixelIndex[0]=y;
           pixelIndex[1]=x;
-          pixelIndex[2]=z+1;
+          pixelIndex[2]=z;
         }
  
 	  image->SetPixel(pixelIndex, 1);
