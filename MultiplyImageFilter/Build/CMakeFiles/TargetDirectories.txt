@@ -1,3 +1,0 @@
-/media/ziyue/Research/Code/ITK_Tools/MultiplyImageFilter/Build/CMakeFiles/edit_cache.dir
-/media/ziyue/Research/Code/ITK_Tools/MultiplyImageFilter/Build/CMakeFiles/rebuild_cache.dir
-/media/ziyue/Research/Code/ITK_Tools/MultiplyImageFilter/Build/CMakeFiles/MultiplyImageByScalar.dir
