@@ -64,9 +64,9 @@ int LabelOverlapMeasures( int argc, char * argv[] )
             << std::setw( 17 ) << "Volume sim."
             << std::setw( 17 ) << "False negative"
             << std::setw( 17 ) << "False positive"
-//            << std::setw( 17 ) << "Hausdorff"
-//            << std::setw( 17 ) << "Avg. Hausdorff"
-//            << std::setw( 17 ) << "Min. dist. sum"
+            << std::setw( 17 ) << "Hausdorff"
+            << std::setw( 17 ) << "Avg. Hausdorff"
+            << std::setw( 17 ) << "Min. dist. sum"
             << std::endl;
 
   typename FilterType::MapType labelMap = filter->GetLabelSetMeasures();
